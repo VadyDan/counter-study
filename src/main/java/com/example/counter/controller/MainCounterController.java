@@ -3,7 +3,7 @@ package com.example.counter.controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/counter")
+@RequestMapping("/")
 public class MainCounterController {
 
     private int count = 0;
@@ -17,6 +17,7 @@ public class MainCounterController {
 
     @GetMapping
     public int getCount() {
+        count++;
         return count;
     }
 
