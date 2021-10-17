@@ -1,12 +1,16 @@
 package com.example.counter.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/")
 public class MainCounterController {
 
-    private int count = 0;
+    private String keyCount = "count";
+    private Long count = 0L;
     private final String sharedKeyUp = "SHARED_KEY_UP";
     private final String sharedKeyDown = "SHARED_KEY_DOWN";
 
@@ -15,9 +19,17 @@ public class MainCounterController {
     private static final int CODE_SUCCESS = 100;
     private static final int AUTH_FAILURE = 102;
 
+    @Autowired
+    private StringRedisTemplate template;
+
     @GetMapping
-    public int getCount() {
-        count++;
+    public Long getCount() {
+        try {
+            ValueOperations<String, String> ops = this.template.opsForValue();
+            count = ops.increment(keyCount);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return count;
     }
 
