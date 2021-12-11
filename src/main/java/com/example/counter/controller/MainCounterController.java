@@ -24,13 +24,13 @@ public class MainCounterController {
 
     @GetMapping
     public Long getCount() {
-        try {
-            ValueOperations<String, String> ops = this.template.opsForValue();
-            count = ops.increment(keyCount);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return count;
+//        try {
+//            ValueOperations<String, String> ops = this.template.opsForValue();
+//            count = ops.increment(keyCount);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+        return count++;
     }
 
     @PostMapping()

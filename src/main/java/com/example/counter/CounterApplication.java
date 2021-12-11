@@ -25,8 +25,8 @@ public class CounterApplication {
     public static void main(String[] args) {
         SpringApplication.run(CounterApplication.class, args);
         LOG.info("Springboot application is started successfully.");
-        runProducer();
-        runConsumer();
+//        runProducer();
+//        runConsumer();
     }
 
     static void runConsumer() {
